@@ -15,7 +15,7 @@ cpu=$(echo -e $table | awk '{print ""$9""}')
 mem=$(echo -e $table | awk '{print ""$10""}')
 timee=$(echo -e $table | awk '{print ""$11""}')
 top_operations=$(top -b -n 1 | head -12 | tail -n +8 | awk '{print ""$1""}' | paste -s -d ",")
-res=$(echo -e "$mem_free, $swap_free, $virt, $res, $shr, $cpu, $mem, $timee\n")
+res=$(echo -e "$mem_free, $swap_free, $virt, $res, $shr, $cpu, $mem, $timee")
 echo $res >> mem1.csv
 echo $top_operations >> top_op_mem1.csv
 done
