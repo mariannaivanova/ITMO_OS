@@ -8,9 +8,14 @@ do
 table=$(top -p $pid -b -n 1 | head -8 | tail -n +8 )
 mem_free=$(top -b -n 1 | head -4 | tail -n +4 | awk '{print ""$6""}')
 swap_free=$(top -b -n 1 | head -5 | tail -n +5 | awk '{print ""$5""}')
-table=$(echo -e $table | awk '{print ""$5", "$6", "$7", "$9", "$10", "$11""}')
+virt=$(echo -e $table | awk '{print ""$5""}')
+res=$(echo -e $table | awk '{print ""$6""}')
+shr=$(echo -e $table | awk '{print ""$7""}')
+cpu=$(echo -e $table | awk '{print ""$9""}')
+mem=$(echo -e $table | awk '{print ""$10""}')
+timee=$(echo -e $table | awk '{print ""$11""}')
 top_operations=$(top -b -n 1 | head -12 | tail -n +8 | awk '{print ""$1""}' | paste -s -d ",")
-res=$(echo -e "$mem_free, $swap_free, $table\n")
+res=$(echo -e "$mem_free, $swap_free, $virt, $res, $shr, $cpu, $mem, $timee\n")
 echo $res >> mem1.csv
 echo $top_operations >> top_op_mem1.csv
 done
