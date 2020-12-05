@@ -1,7 +1,7 @@
 #!/bin/bash
 ./mem.bash&pid=$!
 echo "mem.bash $pid" > 1.csv
-echo "Mem_free, Swap_free, VIRT RES SHR CPU MEM, TIME" >> 1.csv
+echo "Memfree, Swapfree, VIRTRESSHRCPUMEM, TIME" >> 1.csv
 echo "1, 2, 3, 4, 5" > top_op1.csv
 while true
 do
