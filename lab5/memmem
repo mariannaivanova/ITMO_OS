@@ -1,0 +1,2 @@
+#!/bin/bash
+sh t1mem1& sh t1mem2

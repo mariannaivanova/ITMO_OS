@@ -1,0 +1,16 @@
+#!/bin/bash
+./mem.bash&pid=$!
+echo "mem.bash $pid\n" > 1.csv
+echo "Mem_free, Swap_free, VIRT, RES, SHR, CPU, MEM, TIME" >> 1.csv
+echo "1, 2, 3, 4, 5" > top_op1.csv
+while true
+do
+table=$(top -p $pid -b -n 1 | head -8 | tail -n +8 )y
+mem_free=$(top -b -n 1 | head -4 | tail -n +4 | awk '{print ""$6""}')
+swap_free=$(top -b -n 1 | head -5 | tail -n +5 | awk '{print ""$5""}')
+table=$(echo -e $line | awk '{print ""$5", "$6", "$7", "$9", "$10", "$11""}')
+top_operations=$(top -b -n 1 | head -12 | tail -n +8 | awk '{print ""$1""}' | paste -s -d ",")
+res=$(echo -e "$mem_free, $swap_free, $table\n")
+echo $res >> 1.csv
+echo $top_operations >> top_op1.csv
+done
